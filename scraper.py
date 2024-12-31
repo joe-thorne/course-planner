@@ -9,19 +9,26 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 
 
-if __name__ == "__main__":
+def start_driver():
     options = Options()
     options.add_argument('--headless')
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--no-sandbox')
 
-
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     driver.implicitly_wait(10)
     driver.get("https://programs-courses.uq.edu.au/requirements/program/2350/2023")
-    
 
-    elements = driver.find_elements(By.ID, "part-A")
-    for element in elements:
-        print(element.text)
+    return driver
+
+if __name__ == "__main__":
+    driver = start_driver()
+
+    section = driver.find_element(By.ID, "part-A")
+    subjects= section.find_elements(By.CLASS_NAME, "curriculum-reference")
+
+    for subject in subjects:
+        print(subject.get_attribute("href"))
+        print(subject.get_attribute("title"))
+        
     driver.close()
