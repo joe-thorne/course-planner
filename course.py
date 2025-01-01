@@ -11,14 +11,14 @@ class Course:
     def __str__(self):
         return f"{self._code}: {self._name} \n{self._units} units \n{self._category}"
 
-    def get_code():
+    def get_code(self):
         return self._code
 
-    def get_name():
+    def get_name(self):
         return self._name
 
-    def get_units():
+    def get_units(self):
         return self._units
     
-    def get_category():
+    def get_category(self):
         return self._category
